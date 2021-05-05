@@ -1,0 +1,16 @@
+---
+title: "Portefolio assignment 5"
+author: "Bas Koppenaal"
+date: "5-5-2021"
+output: html_document
+bibliography: library_projecticum.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+
+```
+
+
+They said something really smart [@Lissa2021].

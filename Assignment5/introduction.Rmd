@@ -1,0 +1,16 @@
+---
+title: "introduction.Rmd"
+author: "Bas Koppenaal"
+date: "5-5-2021"
+output: html_document
+bibliography: library_projecticum.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Introduction on the project assignment maxima center dashboard
+For our project assignment we are making an dashboard for Maxima Center[@maxima]. In this dashboard we have to collect metadata using Rshiny[@Rshiny]. We have learnt using Rshiny using this website. Our job is making the dashboard as easy to use as possible and pleasant to the eyes. Our contact person is a person named sander and he can help us figure out what is the best way to propose this. We will be using many different techniques we have learned during the course of worklflows. This include making citations. I have used JabRef[@jabref] as a program for this since it is easy to use and effective. JabRef makes it possible to make .bib files from the references that can be used to make easy references in a text like this. In this text only websites are added as references since we are not working with articles like you can find on pubmed. For this practicum we have to do many things. This includes looking at how to host with Rshiny , keeping the code easy to read by adding pseudo coding[@pseudocode] and making dropdown menu’s. Adding pseudo coding is important so people later can easily know how the code works and change it later on if they want to add or remove things. Adding pseudo coding[@pseudocode] is done with almost every program you write and easy to forget ,but it is a really good habit to have since sometimes it can even be difficult to read your own code. Adding dropdown menu’s is mostly done so it looks cool but also helps with adding the metadata. This can be done with once you start typing other options are shown. These options can consist of a limited amount of options that have been added before hand or other words you used for this option before. This way you minimise the amount of typing someone has to do for no reason at all. This saves time and time is money. Once we explained our idea of working on this project to Sander he told us we where on track. We explained our idea by making a PowerPoint presentation. Here we got some feedback on and we asked him a lot of questions. We learnt by asking questions that they have no more Rshiny expert and that is the reason why they are looking to our school for help with making this project. For us this is good since it gives us a lot of experience in coding in a real world situation. Once we are done with all this we will try to figure out more ways on how to improve this dashboard to make it as good as possible. 
+Together with my partners Lars de Groot and Daniël Roodzant we are going to make a great dashboard where the school of Hogeschool Utrecht can be proud of. We also hope that this project goes so good that the Hogeschool Utrecht will get more assignments like these. 
