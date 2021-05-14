@@ -1,0 +1,82 @@
+---
+title: "Portfolio_assignment_7"
+author: "Bas Koppenaal"
+date: "13-5-2021"
+output: html_document
+---
+1. Load the flu (“./data/flu_data.csv), the dengue (.”/data/dengue_data.csv) and the gapminder ({dslabs} package) into three separate dataframes in R.
+
+Done
+
+2. Check if they are in the right shape. Is the data in the ‘tidy’ format? If not change the format to ‘tidy’. 
+
+I made flue_data and dengue_data tidy, Gapminder was already tidy.
+
+3.Change the country and date variables of the three tables so that they coincide in terms of data type, class and values 
+      A. all the Class of Country is Factor, Type is integer
+      B. all the Class of date is Date, gapminder doesnt have date but has year. For now i leave gapminder$year as integer totdat ik hiervoor moet terugkeren
+      C. Wat bedoelen ze met Values---------------------
+      --------------------------------
+      --------------------------------
+      -----------------------------
+4. Store the three tables as separate (so six in total) .csv and .rds files.
+Done
+
+5. In Dbeaver create a new PostgreSQL database “workflowsdb”
+Done
+
+```{r setup, include=FALSE}
+library(dslabs)
+library(readr)
+library(tidyverse)
+
+
+```
+
+
+
+```{r cars}
+
+
+
+##load in flu_data.csv, skip the metadata
+flu_data <- read_csv(here::here("Assignment7/flu_data.csv"), skip = 10)
+##load in dengue_data.csv, skip the metadata 
+dengue_data <- read_csv(here::here("Assignment7/dengue_data.csv"), skip = 10)
+
+##flue_data not tidy
+View(flu_data)
+
+##dengue_data not tidy
+View(dengue_data)
+
+##gapminder data tidy
+View(gapminder)
+ 
+##making flu data tidy
+Tidy_flu_data <- flu_data %>% 
+  pivot_longer(c( "Argentina","Australia", "Austria" ,"Belgium" ,"Bolivia" ,"Brazil" ,"Bulgaria" ,"Canada", "Chile" ,"France" ,"Germany" ,"Hungary" ,"Japan" ,"Mexico" ,"Netherlands" ,"New Zealand" ,"Norway" ,"Paraguay" ,"Peru" ,"Poland" ,"Romania" ,"Russia" ,"South Africa", "Spain" ,"Sweden" ,"Switzerland" ,"Ukraine" ,"United States" , "Uruguay"),
+               names_to = "country", values_to = "values") # combine col names using an underscore
+##making data tidy
+Tidy_dengue_data <- dengue_data %>% 
+  pivot_longer(c( "Argentina" ,"Bolivia", "Brazil", "India", "Indonesia" , "Mexico" , "Philippines" ,"Singapore" ,"Thailand","Venezuela"),
+               names_to = "country", values_to = "values") 
+
+##making the class of Country in gapminder in a Character
+gapminder$country <- as.character(gapminder$country)
+
+
+
+
+##save everything as csv
+write.csv(Tidy_flu_data,"Assignment7\\Tidy_flu_data.csv", row.names = FALSE)
+write.csv(Tidy_dengue_data,"Assignment7\\Tidy_dengue_data.csv", row.names = FALSE)
+write.csv(gapminder,"Assignment7\\gapminder.csv", row.names = FALSE)
+
+##and save everything as RDS
+saveRDS(Tidy_flu_data, "Assignment7\\Tidy_flu_data.rds")
+saveRDS(Tidy_dengue_data, "Assignment7\\Tidy_dengue_data.rds")
+saveRDS(gapminder, "Assignment7\\gapminder.rds")
+
+```
+

@@ -1,0 +1,72 @@
+/* Applies to the entire body of the HTML document (except where overridden by more specific
+selectors). */
+body {
+  background-color: rgb(0,95,170);
+  font-family: arial, sans-serif;
+  font-size: 10px;
+  color: black;
+}
+
+/* Applies to all <h1>...</h1> elements. */
+h1 {
+  font-size: 20px;
+  font-weight: normal;
+  margin-top: 5px;
+  color: white;
+  text-align: right;
+
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: normal;
+  margin-top: 5px;
+  color: black;
+  border-bottom:1px solid black;
+  padding-right:50px;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 5px;
+  color: black;
+}
+
+h4 {
+  font-size: 20px;
+  font-weight: normal;
+  margin-top: 5px;
+  color: white;
+  text-align: center;
+}
+
+h5 {
+  font-size: 10;
+  font-weight: normal;
+  margin-top: 5px;
+  color: white;
+  text-align: center;
+}
+
+/* unvisited link */
+a:link {
+  color: white;
+}
+
+/* visited link */
+a:visited {
+  color: black;
+}
+
+/* mouse over link */
+a:hover {
+  color: red;
+}
+
+/* selected link */
+a:active {
+  color: blue;
+}
+
+

@@ -35,8 +35,10 @@ K je wilt het gemiddelde van alles af halen om te kijken of de componenten een e
 ```{r assignment C. elegans plate experiment}
 
 ### Opdracht B
-C_elegans_data <- read_excel("Lesson1/CE.LIQ.FLOW.062_Tidydata.xlsx")
+C_elegans_data <- read_excel("Assignment1/CE.LIQ.FLOW.062_Tidydata (1).xlsx")
 View(C_elegans_data)
+
+
 
 ### opdracht C
 
@@ -73,11 +75,23 @@ Class(C_elegans_data1$compConcentration)
 
 Normal_data <- C_elegans_data1 %>%  group_by(expType) %>% filter(expType == 'controlNegative')
 
-C_elegans_data1$MeanRawData <- (C_elegans_data1$RawData - mean(Normal_data$RawData)) / sd(Normal_data$RawData)
+C_elegans_data2$MeanRawData <- (C_elegans_data2$RawData - mean(Normal_data$RawData) ) / sd(Normal_data$RawData)
+
+C_elegans_data2$MeanRawData <- C_elegans_data2$MeanRawData + 1
 
 ## J
- C_elegans_data1 %>% group_by(compName) %>% ggplot(aes( x = log10(compConcentration), y = MeanRawData)) +
+ C_elegans_data2 %>% group_by(compName) %>% ggplot(aes( x = log10(compConcentration), y = MeanRawData)) +
  geom_jitter(aes(group = compName, colour = compName, shape = expType))
+ 
+ 
+ ## To check if the controlNegative of MeanRawData 1 is
+
+C_elegans_data3 <-  C_elegans_data2 %>% group_by(expType) %>% filter(expType == 'controlNegative')
+
+mean(C_elegans_data3$MeanRawData)
+
+
+ 
 ```
 
 
