@@ -25,11 +25,24 @@ Done
 5. In Dbeaver create a new PostgreSQL database “workflowsdb”
 Done
 
+6. Took me a while since i didnt understand the question right. I tried to get the CSV and RSD files into Docker instead of using R to get the files in. However the files have been put in Docker
+
+7. I didnt know what to expect so i just did some exercises on the code.
+
+8. Same as point 7 i didnt know what kind of data i wanted to collect 
+
+9. 
+
+
+
 ```{r setup, include=FALSE}
 library(dslabs)
 library(readr)
 library(tidyverse)
-
+library(RPostgreSQL)
+library(devtools)
+library(remotes)
+library(RPostgres)
 
 ```
 
@@ -45,28 +58,50 @@ flu_data <- read_csv(here::here("Assignment7/flu_data.csv"), skip = 10)
 dengue_data <- read_csv(here::here("Assignment7/dengue_data.csv"), skip = 10)
 
 ##flue_data not tidy
-View(flu_data)
+## View(flu_data)
 
 ##dengue_data not tidy
-View(dengue_data)
+## View(dengue_data)
 
-##gapminder data tidy
-View(gapminder)
+##gapminder data needs to be displayed different
+## View(gapminder)
  
 ##making flu data tidy
 Tidy_flu_data <- flu_data %>% 
   pivot_longer(c( "Argentina","Australia", "Austria" ,"Belgium" ,"Bolivia" ,"Brazil" ,"Bulgaria" ,"Canada", "Chile" ,"France" ,"Germany" ,"Hungary" ,"Japan" ,"Mexico" ,"Netherlands" ,"New Zealand" ,"Norway" ,"Paraguay" ,"Peru" ,"Poland" ,"Romania" ,"Russia" ,"South Africa", "Spain" ,"Sweden" ,"Switzerland" ,"Ukraine" ,"United States" , "Uruguay"),
                names_to = "country", values_to = "values") # combine col names using an underscore
+
+
+
+
 ##making data tidy
 Tidy_dengue_data <- dengue_data %>% 
   pivot_longer(c( "Argentina" ,"Bolivia", "Brazil", "India", "Indonesia" , "Mexico" , "Philippines" ,"Singapore" ,"Thailand","Venezuela"),
                names_to = "country", values_to = "values") 
 
+
 ##making the class of Country in gapminder in a Character
 gapminder$country <- as.character(gapminder$country)
 
 
+Tidy_dengue_data$values <- as.numeric(Tidy_dengue_data$values)
+Tidy_flu_data$values <- as.numeric(Tidy_flu_data$values)
 
+##   opsplitsen datum in de vakken jaar dag en maand, soort datum toevoegen en maken genaamd flu_data en dengue_data
+
+
+
+##   infant_mortality life_expectancy fertility population gdp  maken in een lijst van soort data en values
+
+
+##Tidy flue data
+View(Tidy_flu_data)
+
+##Tidy dengue data
+View(Tidy_dengue_data)
+
+##Tidy gapminder
+View(gapminder)
 
 ##save everything as csv
 write.csv(Tidy_flu_data,"Assignment7\\Tidy_flu_data.csv", row.names = FALSE)
@@ -77,6 +112,46 @@ write.csv(gapminder,"Assignment7\\gapminder.csv", row.names = FALSE)
 saveRDS(Tidy_flu_data, "Assignment7\\Tidy_flu_data.rds")
 saveRDS(Tidy_dengue_data, "Assignment7\\Tidy_dengue_data.rds")
 saveRDS(gapminder, "Assignment7\\gapminder.rds")
+
+```
+
+
+```{R Exporting data}
+## 7.6
+## add password if you want to run the file, but for security i wont put it in here. But this peace of code makes a connection to DOCKER.
+con <- dbConnect(RPostgres::Postgres(), 
+                 dbname = "workflowsdb", 
+                 host="localhost", 
+                 port="5432", 
+                 user="postgres", 
+                 password="") 
+
+##looking at talbes in file
+dbListTables(con) 
+
+## putting the code in Docker
+dbWriteTable(con, "Tidy_flu_data", Tidy_flu_data)
+dbWriteTable(con, "Tidy_dengue_data", Tidy_dengue_data)
+dbWriteTable(con, "gapminder", gapminder)
+
+##7.7 I thould it might be easyr to put the code in here.
+
+## SELECT
+##     "Date",
+## 	country
+
+## FROM
+##     public."Tidy_flu_data"
+    
+## ORDER BY
+##     country desc,
+##    	"Date" ASC;
+    
+   
+##7.8  collecting some data from the file
+
+Tidy_flu_data %>% dplyr::filter(Date=='2002-12-29') %>% select(country)
+
 
 ```
 
