@@ -31,8 +31,13 @@ Done
 
 8. Same as point 7 i didnt know what kind of data i wanted to collect 
 
-9. 
+9. Took some time but i changed all the data frames: flue data and dengue data have their dates seperated so they have a collum called year. gapminder has all datas now in 2 collumns called data-name and values. also added everywhere ID and added named_data to flue and dengue data so if they are joined it is clear what is dengue data and what is flue data. 
 
+10. i updated what i did in previous areas so the clean data is now loaded in.
+
+11. i joined denque and flu data in R with dplr, if i need to join everything together or do it in dbeaver let me know but when i read the assignment this seems to be fine.
+
+12. i first exported it to dbeaver and than back.
 
 
 ```{r setup, include=FALSE}
@@ -56,6 +61,9 @@ library(RPostgres)
 flu_data <- read_csv(here::here("Assignment7/flu_data.csv"), skip = 10)
 ##load in dengue_data.csv, skip the metadata 
 dengue_data <- read_csv(here::here("Assignment7/dengue_data.csv"), skip = 10)
+##7.12 Loading back the data in
+dengue_flue_data_dbeaver <- read_csv(here::here("Assignment7/Dengue_flue_data__202105241624.csv"))
+
 
 ##flue_data not tidy
 ## View(flu_data)
@@ -69,46 +77,70 @@ dengue_data <- read_csv(here::here("Assignment7/dengue_data.csv"), skip = 10)
 ##making flu data tidy
 Tidy_flu_data <- flu_data %>% 
   pivot_longer(c( "Argentina","Australia", "Austria" ,"Belgium" ,"Bolivia" ,"Brazil" ,"Bulgaria" ,"Canada", "Chile" ,"France" ,"Germany" ,"Hungary" ,"Japan" ,"Mexico" ,"Netherlands" ,"New Zealand" ,"Norway" ,"Paraguay" ,"Peru" ,"Poland" ,"Romania" ,"Russia" ,"South Africa", "Spain" ,"Sweden" ,"Switzerland" ,"Ukraine" ,"United States" , "Uruguay"),
-               names_to = "country", values_to = "values") # combine col names using an underscore
-
-
-
+               names_to = "country", values_to = "Flue_data") # combine col names using an underscore
 
 ##making data tidy
 Tidy_dengue_data <- dengue_data %>% 
   pivot_longer(c( "Argentina" ,"Bolivia", "Brazil", "India", "Indonesia" , "Mexico" , "Philippines" ,"Singapore" ,"Thailand","Venezuela"),
-               names_to = "country", values_to = "values") 
+               names_to = "country", values_to = "Dengue_data") 
 
 
 ##making the class of Country in gapminder in a Character
 gapminder$country <- as.character(gapminder$country)
 
+## values nummeriek maken -- Of wil ik dit als float hebben?
+Tidy_dengue_data$Dengue_data <- as.numeric(Tidy_dengue_data$Dengue_data)
+Tidy_flu_data$Flue_data <- as.numeric(Tidy_flu_data$Flue_data)
 
-Tidy_dengue_data$values <- as.numeric(Tidy_dengue_data$values)
-Tidy_flu_data$values <- as.numeric(Tidy_flu_data$values)
+##   opsplitsen datum in de vakken jaar dag en maand, soort datum toevoegen en maken genaamd flu_data en dengue_data. Dit wordt gedaan aangezien gapminder alleen jaar heeft en nu kunnen ze mergen. Mischien beter van niet
 
-##   opsplitsen datum in de vakken jaar dag en maand, soort datum toevoegen en maken genaamd flu_data en dengue_data
+Tidy_flu_data <- separate(Tidy_flu_data, "Date", c("year", "month", "day"), sep = "-")
+Tidy_dengue_data <- separate(Tidy_dengue_data, "Date", c("year", "month", "day"), sep = "-")
 
 
+## give each measured data a number. Does Gapminder also need a number?  might need this later. Or do we even need ID at all?
+
+##Tidy_flue_data_ID <- Tidy_flu_data %>%  mutate(ID=seq(nrow(.)))
+##Tidy_dengue_data_ID <- Tidy_dengue_data %>%  mutate(ID=seq(nrow(.)))
+##gapminder_ID <- gapminder %>%  mutate(ID=seq(nrow(.)))
 
 ##   infant_mortality life_expectancy fertility population gdp  maken in een lijst van soort data en values
 
+gapminder_tidy <- gapminder_ID %>%
+  pivot_longer(cols = c(`infant_mortality`, `life_expectancy`, 'fertility', 'population', 'gdp'), names_to = "Data_name", values_to = "values")
+
+## adding Data_name to dengue data and flue data so they can be joined together
+##Tidy_dengue_data_ID_Named <- Tidy_flue_data_ID %>%  mutate(Data_name= 'dengue_data')
+##Tidy_flue_data_ID_Named <- Tidy_dengue_data_ID %>%  mutate(Data_name= 'flue_data')
+
+## 7.11 Here i join dengue and flue data together, Could be done with leftjoin or merge
+## Dengue_flue_data <- merge(Tidy_flu_data , Tidy_dengue_data ,by= c("year", "month", "day", "country") ) 
+ Dengue_flue_data <-left_join(Tidy_flu_data, Tidy_dengue_data, by = c("year", "month", "day", "country"))
+
+
+## to make it tidy
+ Tidy_Dengue_flue_data <- Dengue_flue_data %>% 
+  pivot_longer(c(Flue_data , Dengue_data ),
+               names_to = "Data_name", values_to = "values") 
+ 
+gapminder_tidy <- gapminder_ID %>%
+  pivot_longer(cols = c(`infant_mortality`, `life_expectancy`, 'fertility', 'population', 'gdp'), names_to = "Data_name", values_to = "values")
 
 ##Tidy flue data
-View(Tidy_flu_data)
+View(Tidy_dengue_data_ID_Named)
 
 ##Tidy dengue data
-View(Tidy_dengue_data)
+View(Tidy_flue_data_ID_Named)
 
 ##Tidy gapminder
-View(gapminder)
+View(gapminder_tidy)
 
-##save everything as csv
+##save everything as csv  Needs to be updated at the end
 write.csv(Tidy_flu_data,"Assignment7\\Tidy_flu_data.csv", row.names = FALSE)
 write.csv(Tidy_dengue_data,"Assignment7\\Tidy_dengue_data.csv", row.names = FALSE)
 write.csv(gapminder,"Assignment7\\gapminder.csv", row.names = FALSE)
 
-##and save everything as RDS
+##and save everything as RDS needs to be updated at the end
 saveRDS(Tidy_flu_data, "Assignment7\\Tidy_flu_data.rds")
 saveRDS(Tidy_dengue_data, "Assignment7\\Tidy_dengue_data.rds")
 saveRDS(gapminder, "Assignment7\\gapminder.rds")
@@ -130,22 +162,23 @@ con <- dbConnect(RPostgres::Postgres(),
 dbListTables(con) 
 
 ## putting the code in Docker
-dbWriteTable(con, "Tidy_flu_data", Tidy_flu_data)
-dbWriteTable(con, "Tidy_dengue_data", Tidy_dengue_data)
-dbWriteTable(con, "gapminder", gapminder)
+dbWriteTable(con, "flue_data", Tidy_flue_data_ID_Named)
+dbWriteTable(con, "dengue_data", Tidy_dengue_data_ID_Named)
+dbWriteTable(con, "gapminder", gapminder_tidy)
+dbWriteTable(con, "Dengue_flue_data", Tidy_Dengue_flue_data)
 
 ##7.7 I thould it might be easyr to put the code in here.
 
 ## SELECT
-##     "Date",
+##     "year",
 ## 	country
 
 ## FROM
-##     public."Tidy_flu_data"
+##     public."flu_data"
     
 ## ORDER BY
 ##     country desc,
-##    	"Date" ASC;
+##    	"year" ASC;
     
    
 ##7.8  collecting some data from the file
