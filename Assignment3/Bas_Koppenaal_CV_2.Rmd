@@ -10,19 +10,67 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-![](Profielfoto.jpeg){ width=20%}
-![](Picture.png){ width=5%}
+
+![](Picture.png){ width=2%}
 
 
-<h1>
-Neurocast – Mogelijke functie
-</h1>
 
+
+
+
+```{r cars}
+
+
+```
+
+<div class="row">
+<div class="column left">
+<img src="Profielfoto.jpeg"class="myimg" /> 
+</div>
+
+<div class="column right" style="background-color: rgb(0,95,170);">
+<h1> Bedrijf – Mogelijke functie</h1>
+</div>
+</div>
+
+
+<div class="row">
+<div class="column left">
+<h4>
+BAS KOPPENAAL</h4>
+
+<h5>
+14 Augustus 1997 ![](CV1.png){ width=6%}<br><br>
+ 06 576 92 158 ![](CV2.png){ width=6%}<br><br>
+Baskoppenaal@hotmail.com  ![](CV3.png){ width=6%}<br>
+ <p><a href="http://www.linkedin.com/in/baskoppenaal" target="Wikipedia">LinkedIn profiel  ![](CV4.png){ width=6%}</a></p> <br>
+La Traviatadreef 22 Utrecht![](CV5.png){ width=6%}<br><br><br><br>
+
+<h4>
+INTERESSES </h4>
+<h5>
+Dansen: Hip-Hop <br> <br>
+Hardlopen <br><br>
+Fitness <br><br>
+Duiken <br><br>
+Reizen <br><br>
+Schaken <br><br><br><br>
+</h5>
+
+<h4>
+Aanvullende activiteiten </h4><br>
+
+<h5>
+•	Mentor bij Utrechtse Introductie Tijd <br>
+•	Mentor bij ESN
+</h5>
+</div>
+<div class="column right">
 <h2>
 PROFIEL
 </h2>
 
-Met mijn motivatie en liefde voor problemen oplossen en mensen helpen hoop ik een goed deel te worden van jullie team. Ik geloof dat Neurocast een ideaal bedrijf is om een waanzinnige stage te volgen! 
+Met mijn motivatie en liefde voor problemen oplossen en mensen helpen hoop ik een goed deel te worden van jullie team. Ik geloof dat Neurocast een ideaal bedrijf is om een waanzinnige stage te volgen! <br><br>
 
 <h2>
 OPLEIDINGEN
@@ -33,14 +81,14 @@ BACHELOR: Biologie en Medisch Laboratoriumonderzoek (Life Sciences)
 </h3>
 
 Hogeschool Utrecht | 2016 - Heden <br>
-Specialisatie: Bio-informatica, Bio-moleculaire research
+Specialisatie: Bio-informatica, Bio-moleculaire research <br><br>
 
 <h3>
 MIDDELBARE SCHOOL: HAVO
 </h3>
 
 De Breul | 2009 - 2015 <br>
-Profiel: Natuur & Techniek + Natuur & Gezondheid
+Profiel: Natuur & Techniek + Natuur & Gezondheid <br><br>
 
 <h2>
 VAARDIGHEDEN
@@ -52,12 +100,12 @@ RNA/DNA isolatie			Reportergen assay <br>
 (q)PCR 					Translocatie assay <br>
 (In frame) kloneren 			Western blot <br>
 Transformeren				Cel kweek <br>
-Transfecteren				 
+Transfecteren			<br>	 
 <h3>
 Bio-informatica: 
 </h3>
 Werken met Databanken en Bash programming <br>
-Programmeren met R en Bioconductor voor reproduceerbare data-analyse 			
+Programmeren met R en Bioconductor voor reproduceerbare data-analyse 	<br><br>		
 
 <h2>
 TALEN
@@ -72,62 +120,7 @@ Volledige beheersing
 <h3>
 Duits</h3>
 Basisvaardigheid | Aan het leren 
-
-<h4>
-BAS KOPPENAAL</h4>
-
-<h5>
-14 Augustus 1997 <br>
- 06 576 92 158 <br>
-Baskoppenaal@hotmail.com  
- <p><a href="http://www.linkedin.com/in/baskoppenaal" target="Wikipedia">LinkedIn profiel</a></p> 
-La Traviatadreef 22 Utrecht</5>
-
-<h4>
-INTERESSES </h4>
-<h5>
-Dansen: Hip-Hop <br>
-Hardlopen <br>
-Fitness <br>
-Duiken <br>
-Reizen <br>
-Schaken
-</h5>
-
-<h4>
-Aanvullende activiteiten </h4>
-
-<h5>
-•	Mentor bij Utrechtse Introductie Tijd <br>
-•	Mentor bij ESN
-</h5>
-
-
-
-
-```{r cars}
-
-
-```
-
-<div class="row">
-  <div class="column" style="background-color:#aaa;">
-    <h2>Column 1</h2>
-    <p>Some text..</p>
-  </div>
-  <div class="column" style="background-color:#bbb;">
-    <h2>Column 2</h2>
-    <p>Some text..</p>
-  </div>
-  <div class="column" style="background-color:#ccc;">
-    <h2>Column 3</h2>
-    <p>Some text..</p>
-  </div>
-
-
-
-https://www.w3schools.com/css/tryit.asp?filename=trycss_website_layout_grid2
-  
+</div>
 
 ```{r pressure, echo=FALSE}
 

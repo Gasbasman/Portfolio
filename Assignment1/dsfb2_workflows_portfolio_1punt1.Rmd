@@ -7,6 +7,7 @@ output: html_document
 
 ```{r setup, include=FALSE}
 library(readxl)
+library(tidyverse)
 
 ```
 
@@ -14,9 +15,9 @@ A: Als ik het bestand in excel bekijk zie ik dat er datums worden ingevoerd maar
 
 B: Gedaan 
 
-C:    Bij RawData is er meerdere keren NA ingevuld
-      Bij Compname kan je zien dat er 5 verschillende componenten getest zijn: 2,6-diisopropylnaphthalene, decane, naphthalene, Ethanol en S-medium
-      Bij Compconcentration staan er soms wat rare getallen in: 
+C:    Bij RawData is er meerdere keren NA ingevuld, Het is nummeric dat goed is
+      Bij Compname kan je zien dat er 5 verschillende componenten getest zijn: 2,6-diisopropylnaphthalene, decane, naphthalene, Ethanol en S-medium, Is character dus dat is ook goed 
+      Bij Compconcentration staan er soms wat rare getallen in: is character dus dat is verkeerd
 
 D: ok
 
@@ -36,15 +37,15 @@ K je wilt het gemiddelde van alles af halen om te kijken of de componenten een e
 
 ### Opdracht B
 C_elegans_data <- read_excel("Assignment1/CE.LIQ.FLOW.062_Tidydata (1).xlsx")
-View(C_elegans_data)
+##View(C_elegans_data)
 
 
 
-### opdracht C
+### opdracht C, 
 
-view(unique(C_elegans_data$RawData))
-view(unique(C_elegans_data$compName))
-view(unique(C_elegans_data$compConcentration))
+##view(unique(C_elegans_data$RawData))
+##view(unique(C_elegans_data$compName))
+##view(unique(C_elegans_data$compConcentration))
 
 ##er gebeurt niet zoveel
 
@@ -62,7 +63,7 @@ C_elegans_data1$compConcentration <- as.numeric(C_elegans_data1$compConcentratio
 
 ## kijken of de class is veranderd
 
-Class(C_elegans_data1$compConcentration)
+class(C_elegans_data1$compConcentration)
 
 ## kijken of de grafiek nu wel lukt
 

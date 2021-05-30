@@ -28,7 +28,7 @@ K: 4: it doesnt really work but above every part of code it says what the code s
 L: done dit heet 'study 1.R' en 'Study 1 data'
 M: i got it everything running with some chances,I changed everything where it says EDIT in the line
 N: i did everything where it says edit i chanced 
-O: ik had in het begin wat moeite maar met een beetje hulp en wat energy ging het helemaal goed 4/5. 
+O: ik had in het begin wat moeite maar met een beetje hulp en wat energy ging het helemaal goed 3/5. 
 P: ik vindt dit een beetje vage vraag: 
 
 maar de code die ik aangepast heb: regel 29 - 42 
