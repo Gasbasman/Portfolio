@@ -7,7 +7,7 @@ This is for my portfolio exercises
 
 2.0 assignment = continue opdracht voor alles
 
-3.0 assignment = mee bezig, Vragen aan docent stellen
+3.0 assignment af
 
 4 geen portefolio assignment
 
